@@ -1,6 +1,10 @@
 # Gray-Matter-Lane-Detection
 
-In this project, we use a deep learning-based approach to improve upon lane detection. 
+In this project, we have use two approach but the second approach doesnot work well with the Indian Roads.
+
+# First Approach 
+
+In this we use a deep learning-based approach to improve upon lane detection. 
 We uses a fully convolutional neural network to output an image of a predicted lane.
 
 # Software Requirements:
@@ -31,3 +35,30 @@ file above the originals here will be overwritten! These get fed into the below.
 
 draw_detected_lanes.py - Using the trained model and an input video, this predicts the lane, averages across 5 frames, and returns the original video with predicted lane lines drawn onto it. 
 
+# Second Apporch 
+
+This approach is based on edge detection using opencv followed by masking the image
+with region of interest and then applying hough transformation to get the lane lines.
+Steps to be followed :-
+1.Apply some filtering/blurring to get sharp edges & rid of noises in the roads ( we
+can experiment and choose any one filtering from bilateral filter, gabor filter,
+trilateral filter )
+
+2.Conversion of image to grayscale ( This is help in improving our processing
+time).
+
+3.Apply canny detector, to detect the edges.
+
+4.Apply a ROI mask ( to eliminate the non-required elements from the scene).
+
+5.Apply hough transform (this step also requires a vigorous experimentation with
+tweaking of parameters).
+
+6.Detect the lane lines.
+
+7.Mask the lines to the original image.
+
+The above seven steps will mark the end of our Approach 1.
+
+Reference:
+https://github.com/naokishibuya/car-finding-lane-lines/
