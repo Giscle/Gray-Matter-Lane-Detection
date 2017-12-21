@@ -59,7 +59,7 @@ tweaking of parameters).
 
 7.Mask the lines to the original image.
 
-The above seven steps will mark the end of our Approach 1.
+The above seven steps will mark the end of our Approach 2.
 
 Reference:
 https://github.com/naokishibuya/car-finding-lane-lines/
