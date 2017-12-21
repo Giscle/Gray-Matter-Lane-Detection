@@ -40,6 +40,7 @@ draw_detected_lanes.py - Using the trained model and an input video, this predic
 This approach is based on edge detection using opencv followed by masking the image
 with region of interest and then applying hough transformation to get the lane lines.
 Steps to be followed :-
+
 1.Apply some filtering/blurring to get sharp edges & rid of noises in the roads ( we
 can experiment and choose any one filtering from bilateral filter, gabor filter,
 trilateral filter )
