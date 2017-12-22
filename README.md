@@ -12,6 +12,11 @@ We uses a fully convolutional neural network to output an image of a predicted l
   <img width="600" height="400" src="https://github.com/Giscle/Gray-Matter-Lane-Detection/blob/master/output.gif">
 </p>
 
+The above result was obtained while running the model with pre-trained weights, we believe the results will be great after training the model with our own data.
+
+## Original Source:
+
+https://github.com/mvirgo/MLND-Capstone
 
 ## Software Requirements:
 If using Linux or Mac, you can use this conda environment file. In the command line, use conda env create -f lane_environment.yml and then source activate lane_environment to use the environment. This is a slightly modified environment from that used in Term of the Udacity SDCND. Please see the note on moviepy below.
@@ -31,8 +36,11 @@ Alternatively, you can use the following:
     scipy
 
 
-## Dataset:
+## Dataset (non - indian):
 You can download the full training set of images I used here(https://www.dropbox.com/s/rrh8lrdclzlnxzv/full_CNN_train.p?dl=0) and the full set of 'labels' (which are just the 'G' channel from an RGB image of a re-drawn lane with an extra dimension added to make use in Keras easier) here(https://www.dropbox.com/s/ak850zqqfy6ily0/full_CNN_labels.p?dl=0) (157 MB).
+
+## Dataset (indian):
+Keep an eye, will be updated soon :)
 
 
 ## Key Files:
@@ -45,6 +53,7 @@ draw_detected_lanes.py - Using the trained model and an input video, this predic
 
 
 ## Second Approach 
+
 This approach is based on edge detection using opencv followed by masking the image
 with region of interest and then applying hough transformation to get the lane lines.
 Steps to be followed :-
@@ -67,11 +76,11 @@ tweaking of parameters).
 
 7.Mask the lines to the original image.
 
-The above seven steps will mark the end of our Approach 2.
+This opencv based approach can be visualized by having a look at test.ipynb, where it can be sensed that this approach will completely be a failure , since in indian one will definately encounter some scenes, where the lane markings on the road will either be absent or noisy.
 
-
-## Original Source:
+## Resource:
 
 https://github.com/naokishibuya/car-finding-lane-lines/
 
-https://github.com/mvirgo/MLND-Capstone
+
+In conclusion improving First Approach by training the model with own data and after that tuning the hyperparameters seems to be best approach for solving lane detection problem in indian roads.
