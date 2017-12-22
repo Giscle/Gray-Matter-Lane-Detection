@@ -8,7 +8,7 @@ In this we use a deep learning-based approach to improve upon lane detection.
 We uses a fully convolutional neural network to output an image of a predicted lane.
 
 <p align="center">
-  <gif width="460" height="300" src="https://github.com/Giscle/Gray-Matter-Lane-Detection/blob/master/output.gif">
+  < src="https://github.com/Giscle/Gray-Matter-Lane-Detection/blob/master/output.gif">
 </p>
 
 # Software Requirements:
