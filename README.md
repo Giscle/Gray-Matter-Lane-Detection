@@ -70,7 +70,7 @@ tweaking of parameters).
 The above seven steps will mark the end of our Approach 2.
 
 
-## Reference:
+## Original Source:
 
 https://github.com/naokishibuya/car-finding-lane-lines/
 
