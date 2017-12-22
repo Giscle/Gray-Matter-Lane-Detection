@@ -7,6 +7,10 @@ In this project, we have use two approach but the second approach doesnot work w
 In this we use a deep learning-based approach to improve upon lane detection. 
 We uses a fully convolutional neural network to output an image of a predicted lane.
 
+<p align="center">
+  <gif width="460" height="300" src="https://github.com/Giscle/Gray-Matter-Lane-Detection/blob/master/output.gif">
+</p>
+
 # Software Requirements:
 
 If using Linux or Mac, you can use this conda environment file. In the command line, use conda env create -f lane_environment.yml and then source activate lane_environment to use the environment. This is a slightly modified environment from that used in Term of the Udacity SDCND. Please see the note on moviepy below.
