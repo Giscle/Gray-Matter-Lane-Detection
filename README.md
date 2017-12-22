@@ -12,7 +12,7 @@ We uses a fully convolutional neural network to output an image of a predicted l
   <img width="600" height="400" src="https://github.com/Giscle/Gray-Matter-Lane-Detection/blob/master/output.gif">
 </p>
 
-The above result was obtained while running the model with pre-trained weights, we believe the results will be great after training the model with our own data.
+The above result was obtained while running the model with pre-trained model (full_CNN_model.h5), we believe the results will be better after training the model with our own data.
 
 ## Original Source:
 
