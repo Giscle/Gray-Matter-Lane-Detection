@@ -2,7 +2,7 @@
 
 In this project, we have use two approach but the second approach doesnot work well with the Indian Roads.
 
-# First Approach 
+## First Approach 
 
 In this we use a deep learning-based approach to improve upon lane detection. 
 We uses a fully convolutional neural network to output an image of a predicted lane.
@@ -12,7 +12,7 @@ We uses a fully convolutional neural network to output an image of a predicted l
   <img width="600" height="400" src="https://github.com/Giscle/Gray-Matter-Lane-Detection/blob/master/output.gif">
 </p>
 
-# Software Requirements:
+## Software Requirements:
 
 If using Linux or Mac, you can use this conda environment file. In the command line, use conda env create -f lane_environment.yml and then source activate lane_environment to use the environment. This is a slightly modified environment from that used in Term of the Udacity SDCND. Please see the note on moviepy below.
 
@@ -30,11 +30,10 @@ Alternatively, you can use the following:
     scikit-learn
     scipy
 
-# DATASET:
+## Dataset:
 You can download the full training set of images I used here(https://www.dropbox.com/s/rrh8lrdclzlnxzv/full_CNN_train.p?dl=0) and the full set of 'labels' (which are just the 'G' channel from an RGB image of a re-drawn lane with an extra dimension added to make use in Keras easier) here(https://www.dropbox.com/s/ak850zqqfy6ily0/full_CNN_labels.p?dl=0) (157 MB).
 
-# KEY FILES:
-
+## Key Files:
 fully_conv_NN.py -This is the fully convolutional neural network to train using that data.
 
 full_CNN_model.h5 - These are the final outputs from the above CNN. Note that if you train the 
@@ -43,7 +42,6 @@ file above the originals here will be overwritten! These get fed into the below.
 draw_detected_lanes.py - Using the trained model and an input video, this predicts the lane, averages across 5 frames, and returns the original video with predicted lane lines drawn onto it. 
 
 # Second Approach 
-
 This approach is based on edge detection using opencv followed by masking the image
 with region of interest and then applying hough transformation to get the lane lines.
 Steps to be followed :-
@@ -68,7 +66,7 @@ tweaking of parameters).
 
 The above seven steps will mark the end of our Approach 2.
 
-Reference:
+## Reference:
 
 https://github.com/naokishibuya/car-finding-lane-lines/
 
