@@ -30,6 +30,12 @@ Alternatively, you can use the following:
     scikit-learn
     scipy
 
+# DATASET:
+For fully convolutional network
+You can download the full training set of images I used here and the full set of 'labels' (which are just the 'G' channel from an RGB image of a re-drawn lane with an extra dimension added to make use in Keras easier) here (157 MB).
+
+Images with coefficient labels
+If you just want the original training images with no flips or rotations (downsized to 80x160x3) you can find them here. You can also find the related coefficient labels (i.e. not the drawn lane labels, but the cofficients for a polynomial line) here.
 
 # KEY FILES:
 
