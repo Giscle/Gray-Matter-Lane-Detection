@@ -20,16 +20,29 @@ from keras.layers import Conv2DTranspose, Conv2D, MaxPooling2D
 from keras.layers.normalization import BatchNormalization
 from keras.preprocessing.image import ImageDataGenerator
 from keras import regularizers
+from keras.callbacks import TensorBoard
+from scipy.misc import imresize
+import matplotlib.pyplot as plt
+import cv2
 
 # Load training images
-train_images = pickle.load(open("full_CNN_train.p", "rb" ))
+train_images_a = pickle.load(open("../bucket/input_data/input_final.p", "rb" ))
+train_images_b = pickle.load(open("../bucket/input_data/input_final_1.p", "rb" ))
+train_images = train_images_a + train_images_b
 
 # Load image labels
-labels = pickle.load(open("full_CNN_labels.p", "rb" ))
+labels_a = pickle.load(open("../bucket/input_data/output_final.p", "rb" ))
+labels_b = pickle.load(open("../bucket/input_data/output_final_2.p", "rb" ))
+labels = labels_a + labels_b
 
 # Make into arrays as the neural network wants these
 train_images = np.array(train_images)
 labels = np.array(labels)
+
+# blanks = np.zeros_like(labels[7000])
+# lane_drawn = np.dstack((blanks, labels[7000], blanks))
+# plt.imshow(lane_drawn)
+# plt.imshow(cv2.addWeighted(train_images[7000], 1, lane_drawn, 1, 0))
 
 # Normalize labels - training images get normalized to start in the network
 labels = labels / 255
@@ -39,11 +52,13 @@ train_images, labels = shuffle(train_images, labels)
 # Test size may be 10% or 20%
 X_train, X_val, y_train, y_val = train_test_split(train_images, labels, test_size=0.1)
 
+
 # Batch size, epochs and pool size below are all paramaters to fiddle with for optimization
-batch_size = 128
+batch_size = 256
 epochs = 10
 pool_size = (2, 2)
 input_shape = X_train.shape[1:]
+
 
 ### Here is the actual neural network ###
 model = Sequential()
@@ -62,7 +77,7 @@ model.add(MaxPooling2D(pool_size=pool_size))
 
 # Conv Layer 3
 model.add(Conv2D(16, (3, 3), padding='valid', strides=(1,1), activation = 'relu', name = 'Conv3'))
-model.add(Dropout(0.2))
+# model.add(Dropout(0.2))
 
 # Conv Layer 4
 model.add(Conv2D(32, (3, 3), padding='valid', strides=(1,1), activation = 'relu', name = 'Conv4'))
@@ -124,23 +139,31 @@ model.add(Conv2DTranspose(1, (3, 3), padding='valid', strides=(1,1), activation 
 ### End of network ###
 
 
+# In[ ]:
+
+
 # Using a generator to help the model use less data
 # Channel shifts help with shadows slightly
-datagen = ImageDataGenerator(channel_shift_range=0.2)
+from keras import optimizers
+
+datagen = ImageDataGenerator(channel_shift_range=0.2,horizontal_flip=True)
 datagen.fit(X_train)
 
-# Compiling and training the model
-model.compile(optimizer='Adam', loss='mean_squared_error')
-model.fit_generator(datagen.flow(X_train, y_train, batch_size=batch_size), steps_per_epoch=len(X_train)/batch_size,
-epochs=epochs, verbose=1, validation_data=(X_val, y_val))
+model.compile(optimizer='Adam', loss='mean_squared_error',metrics=['accuracy'])
+
+tensorboard = TensorBoard(log_dir='./logs', histogram_freq=0,write_graph=True, write_images=True)
+
+model.fit_generator(datagen.flow(X_train, y_train, batch_size=batch_size), steps_per_epoch=len(X_train)/batch_size,epochs=epochs,verbose=1, validation_data=(X_val, y_val),callbacks=[tensorboard])
+
+# Show summary of model
+# model.summary()
+
 
 # Freeze layers since training is done
 model.trainable = False
-model.compile(optimizer='Adam', loss='mean_squared_error')
-
+model.compile(optimizer='Adam', loss='mean_squared_error',metrics=['accuracy'])
 # Save model architecture and weights
 model.save('full_CNN_model.h5')
 
-# Show summary of model
-model.summary()
+
 
